@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -40,14 +39,20 @@
         "description": "Lab ORIGEN plus"
       },
       {
-        "@type": "SoftwareApplication",
-        "name": "ORIGEN",
-        "operatingSystem": "All",
-        "applicationCategory": "ShoppingApplication",
+        "@type": "Product",
+        "name": "ORIGEN plus",
+        "description": "Productos Naturales ORIGEN plus: TH MAG 14 Comprimidos, ORIGEN 15 Discos, ORIGEN 30 Comprimidos, ORIGEN 360mL y VCOL 360mL.",
+        "image": "https://origen.plus/icons/2b50_512.webp",
+        "brand": {
+          "@type": "Brand",
+          "name": "ORIGEN plus"
+        },
         "offers": {
           "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "COP"
+          "url": "https://origen.plus/",
+          "price": "15600",
+          "priceCurrency": "COP",
+          "availability": "https://schema.org/InStock"
         }
       }
     ]
@@ -73,32 +78,55 @@
   <!-- Módulos CSS -->
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/base.css">
-  <link rel="stylesheet" href="./css/navbar.css">
-  <link rel="stylesheet" href="./css/products.css">
-  <link rel="stylesheet" href="./css/cart.css">
-  <link rel="stylesheet" href="./css/checkout.css">
+  <!--
+    Se removieron navbar.css, cart.css y checkout.css de esta página:
+    esta landing no usa navbar, carrito ni checkout.
+    Si esta página SÍ forma parte de la app completa y esos elementos
+    existen en otra vista, vuelve a agregar estos links.
+  -->
 </head>
 <body>
-    <div class="container">
-        <div class="badge">Productos Fabricados por:</div>
-        <h1>Lab ORIGEN plus</h1>
-        <div class="subtitulo">ORIGEN plus</div>
-        <!-- Pon aquí un banner de tus productos estrella -->
-        <img src="https://via.placeholder.com/400x250.png?text=VCOL+y+ORIGEN+100%25+Original" alt="Productos Lab ORIGEN plus">
-        
-        <p class="precio-regular">Precio Regular: $22.300</p>
-        <p class="precio-oferta">$15.600</p>
-        <div class="ahorro">💵 ¡Ahorro directo en ORIGEN plus en tu pedido!</div>
-        
-        <div class="info-despacho">
-           🍾 <b>TH MAG 14 Comprimidos:</b> 15 Discos Comprimidos<br>PSA-0005343-2024<br>
-           🍾 <b>ORIGEN 15 Discos:</b> 15 Discos Comprimidos<br>PSA-0005343-2024<br>
-           🍾 <b>ORIGEN 30 Comprimidos:</b> 30 Discos Comprimidos Distribuido Por:ORIGEN plus<br>PSA-0005343-2024<br>
-           🍾 <b>ORIGEN 360mL:</b> BEBIDA A BASE DE AGUA CON FRUTA<br>Fresa, Cúrcuma, manzanilla, Colageno Hidrolizado, Citrato de Magnesio, Citrato de Calcio, Vitamina B1, Zinc, Vitamina D3<br>
-           🍾 <b>VCOL 360mL:</b><b></b> .
-        </div>
-        <!-- COLOCA TU ENLACE DE WOMPI PARA ESTE COMBO AQUÍ -->
-        <a href="https://origen.starnatural.co" class="btn-wompi">👉 TOCAR AQUÍ PARA COMPRAR ORIGEN plus</a>
-    </div>
+    <main class="container">
+        <header>
+          <div class="badge">Productos Fabricados por:</div>
+          <h1>Lab ORIGEN plus</h1>
+          <p class="subtitulo">ORIGEN plus</p>
+        </header>
+
+        <!-- Reemplaza este placeholder por una imagen real de tus productos, alojada en tu propio dominio -->
+        <img
+          src="./img/productos-origen-plus.webp"
+          alt="Productos Lab ORIGEN plus: VCOL y ORIGEN 100% Original"
+          loading="lazy"
+          width="400"
+          height="250">
+
+        <section aria-label="Precio">
+          <p class="precio-regular">Precio Regular: $22.300</p>
+          <p class="precio-oferta">$15.600</p>
+          <p class="ahorro">💵 ¡Ahorro directo en ORIGEN plus en tu pedido!</p>
+        </section>
+
+        <section class="info-despacho" aria-label="Detalle de productos">
+           🍾 <strong>TH MAG 14 Comprimidos:</strong> 15 Discos Comprimidos<br>
+           PSA-0005343-2024<br>
+           🍾 <strong>ORIGEN 15 Discos:</strong> 15 Discos Comprimidos<br>
+           PSA-0005343-2024<br>
+           🍾 <strong>ORIGEN 30 Comprimidos:</strong> 30 Discos Comprimidos Distribuido Por: ORIGEN plus<br>
+           PSA-0005343-2024<br>
+           🍾 <strong>ORIGEN 360mL:</strong> BEBIDA A BASE DE AGUA CON FRUTA<br>
+           Fresa, Cúrcuma, manzanilla, Colágeno Hidrolizado, Citrato de Magnesio, Citrato de Calcio, Vitamina B1, Zinc, Vitamina D3<br>
+           🍾 <strong>VCOL 360mL:</strong> —
+        </section>
+
+        <!-- Enlace de Wompi para este combo -->
+        <a
+          href="https://origen.starnatural.co"
+          class="btn-wompi"
+          target="_blank"
+          rel="noopener noreferrer">
+          👉 TOCAR AQUÍ PARA COMPRAR ORIGEN plus
+        </a>
+    </main>
 </body>
 </html>

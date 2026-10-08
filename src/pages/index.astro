@@ -1,40 +1,89 @@
-
 ---
-const title = 'ORIGEN plus';
+const siteUrl = 'https://origen.plus/';
+const title = 'ORIGEN plus | Producto natural en Cali, Colombia';
 const description =
-  'ORIGEN plus — bebida a base de agua con fruta, disponible en formatos de 330 ml y 30 ml / 1 fl oz.';
+  'ORIGEN plus, marca de producto natural de la línea ORIGEN en Cali, Colombia. Bebida a base de agua con fruta en 330 ml y 30 ml / 1 fl oz.';
+const ogImage = `${siteUrl}images/og-origen-1200x630.jpg`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${siteUrl}#website`,
+      url: siteUrl,
+      name: 'ORIGEN plus',
+      alternateName: ['ORIGEN', 'origen.plus'],
+      inLanguage: 'es-CO',
+      publisher: { '@id': `${siteUrl}#organization` },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${siteUrl}#organization`,
+      name: 'ORIGEN plus',
+      alternateName: 'ORIGEN',
+      url: siteUrl,
+      logo: `${siteUrl}icons/origen-512.png`,
+      description:
+        'Marca de producto natural de la línea ORIGEN, con sede en Cali, Colombia.',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Cali',
+        addressRegion: 'Valle del Cauca',
+        addressCountry: 'CO',
+      },
+      email: 'hola@origen.plus',
+      // Descomenta y completa cuando tengas redes con el mismo nombre:
+      // sameAs: [
+      //   'https://www.instagram.com/TU_USUARIO',
+      //   'https://www.facebook.com/TU_PAGINA',
+      // ],
+    },
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-CO">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title>{title}</title>
-
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0a0a" />
+    <link rel="canonical" href={siteUrl} />
 
-    <link rel="canonical" href="https://origen.plus/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="ORIGEN plus, producto natural de la línea ORIGEN en Cali, Colombia"
+    />
+    <meta property="og:site_name" content="ORIGEN plus" />
+    <meta property="og:locale" content="es_CO" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" type="image/png" href="/icons/origen-192.png" />
     <link rel="apple-touch-icon" href="/icons/origen-192.png" />
 
-    <meta property="og:title" content="ORIGEN plus" />
-    <meta
-      property="og:description"
-      content="ORIGEN plus — bebida a base de agua con fruta, disponible en formatos de 330 ml y 30 ml / 1 fl oz."
-    />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://origen.plus/" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ORIGEN plus" />
-    <meta
-      name="twitter:description"
-      content="ORIGEN plus — bebida a base de agua con fruta."
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap"
+      rel="stylesheet"
     />
   </head>
 
@@ -46,9 +95,10 @@ const description =
 
       <a href="/" class="logo">ORIGEN</a>
 
-      <nav>
+      <nav aria-label="Principal">
         <a href="#producto">Producto</a>
         <a href="#detalle">Detalles</a>
+        <a href="#marca">Marca</a>
         <a href="#contacto">Contacto</a>
       </nav>
     </header>
@@ -57,16 +107,17 @@ const description =
       <!-- HERO -->
       <section class="hero">
         <div class="hero-content">
-          <p class="eyebrow">ORIGEN · ORIGEN PLUS</p>
+          <p class="eyebrow">Cali, Colombia</p>
 
           <h1>
-            ORIGEN
-            <span>ORIGEN PLUS.</span>
+            ORIGEN plus
+            <span>producto natural de la línea ORIGEN.</span>
           </h1>
 
           <p class="hero-text">
-            Bebida a base de agua con fruta, presentada en dos formatos:
-            330 ml para tener en casa y 30 ml / 1 fl oz para llevar.
+            ORIGEN plus es una marca de producto natural de la línea ORIGEN,
+            de Cali, Colombia: una bebida a base de agua con fruta, en 330 ml
+            para tener en casa y 30 ml / 1 fl oz para llevar.
           </p>
 
           <a href="#producto" class="button">
@@ -79,7 +130,10 @@ const description =
 
           <img
             src="/images/envase-origen-25ml.webp"
-            alt="ORIGEN plus"
+            alt="Envase de ORIGEN plus, bebida a base de agua con fruta"
+            width="430"
+            height="650"
+            fetchpriority="high"
           />
         </div>
       </section>
@@ -89,7 +143,10 @@ const description =
         <div class="section-image">
           <img
             src="/images/envase-origen-25ml.webp"
-            alt="ORIGEN plus"
+            alt="Envase individual de ORIGEN plus de 30 ml"
+            width="380"
+            height="570"
+            loading="lazy"
           />
         </div>
 
@@ -152,9 +209,28 @@ const description =
         <div class="cap-card">
           <img
             src="/images/tapa-blanca.webp"
-            alt="Detalle del envase de ORIGEN"
+            alt="Detalle de la tapa blanca del envase de ORIGEN plus"
+            width="400"
+            height="400"
+            loading="lazy"
           />
         </div>
+      </section>
+
+      <!-- MARCA -->
+      <section id="marca" class="brand-section">
+        <p class="eyebrow">LA MARCA</p>
+
+        <h2>
+          Línea ORIGEN
+          <span>desde Cali, Colombia.</span>
+        </h2>
+
+        <p>
+          ORIGEN es una línea de productos naturales creada en Cali, Valle del
+          Cauca. ORIGEN plus es su bebida a base de agua con fruta, pensada
+          para acompañarte en casa y fuera de ella.
+        </p>
       </section>
 
       <!-- CONTACTO -->
@@ -173,7 +249,7 @@ const description =
     </main>
 
     <footer>
-      <span>© {new Date().getFullYear()} ORIGEN</span>
+      <span>© {new Date().getFullYear()} ORIGEN · Cali, Colombia</span>
       <span>origen.plus</span>
     </footer>
 
@@ -221,8 +297,6 @@ const description =
 </html>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Playfair+Display:wght@500;600&display=swap');
-
   :global(*) {
     box-sizing: border-box;
   }
@@ -309,7 +383,7 @@ const description =
   }
 
   h1 {
-    font-size: clamp(64px, 8vw, 120px);
+    font-size: clamp(48px, 7vw, 100px);
   }
 
   h2 {
@@ -320,6 +394,13 @@ const description =
   h2 span {
     display: block;
     color: #b8a47c;
+  }
+
+  h1 span {
+    margin-top: 12px;
+    font-size: 0.45em;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
   }
 
   .hero-text {
@@ -357,6 +438,7 @@ const description =
     position: relative;
     z-index: 2;
     width: min(75%, 430px);
+    height: auto;
     max-height: 650px;
     object-fit: contain;
     filter: drop-shadow(0 35px 60px rgba(0, 0, 0, 0.8));
@@ -388,16 +470,27 @@ const description =
 
   .section-image img {
     width: min(70%, 380px);
+    height: auto;
     filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.7));
   }
 
   .section-content p,
-  .detail-section p {
+  .detail-section p,
+  .brand-section p:not(.eyebrow) {
     max-width: 520px;
     margin-top: 30px;
     color: #999;
     font-size: 17px;
     line-height: 1.8;
+  }
+
+  .brand-section {
+    padding: 120px 10vw;
+    border-top: 1px solid #1e1e1e;
+  }
+
+  .brand-section p:not(.eyebrow) {
+    max-width: 620px;
   }
 
   .specs {
@@ -434,6 +527,7 @@ const description =
 
   .cap-card img {
     width: 70%;
+    height: auto;
   }
 
   .cta {
@@ -487,6 +581,10 @@ const description =
     .detail-section {
       display: flex;
       flex-direction: column;
+    }
+
+    .brand-section {
+      padding: 100px 8vw;
     }
 
     .specs {

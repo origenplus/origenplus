@@ -55,6 +55,7 @@ const jsonLd = {
    ========================================================================== */
 const navLinks = [
   { href: '#producto', label: 'Producto' },
+  { href: '#zarzilla-alfa', label: 'Zarzilla Alfa' },
   { href: '#detalle', label: 'Detalles' },
   { href: '#marca', label: 'Marca' },
   { href: '#contacto', label: 'Contacto' },
@@ -64,6 +65,12 @@ const specs = [
   { value: '350 mL', label: 'Formato hogar' },
   { value: '30 mL', label: 'Formato individual' },
   { value: '1 fl oz', label: 'Presentación individual' },
+];
+
+const zarzillaSpecs = [
+  { value: '500 mL', label: 'Presentación' },
+  { value: 'Vitamina C y Zinc', label: 'Fortificado con' },
+  { value: 'Zarzaparrilla y sábila', label: 'Ingredientes destacados' },
 ];
 
 const year = new Date().getFullYear();
@@ -190,6 +197,43 @@ const year = new Date().getFullYear();
 
           <div class="specs">
             {specs.map(({ value, label }) => (
+              <div>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ZARZILLA ALFA ================= -->
+      <section id="zarzilla-alfa" class="product-section reverse">
+        <div class="section-image">
+          <img
+            src="/images/zarzilla-alfa.webp"
+            alt="Botella verde de Zarzilla Alfa, bebida a base de zumo de frutas con corteza de zarzaparrilla y sábila, 500 mL"
+            width="380"
+            height="570"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="section-content">
+          <p class="eyebrow">NUEVO PRODUCTO</p>
+
+          <h2>
+            Zarzilla Alfa
+            <span>Bebida a base de zumo de frutas.</span>
+          </h2>
+
+          <p>
+            Zarzilla Alfa es una bebida a base de zumo de frutas, fortificada
+            con vitamina C y zinc, con corteza de zarzaparrilla y sábila.
+            Presentación de 500 mL.
+          </p>
+
+          <div class="specs">
+            {zarzillaSpecs.map(({ value, label }) => (
               <div>
                 <strong>{value}</strong>
                 <span>{label}</span>
@@ -526,10 +570,15 @@ const year = new Date().getFullYear();
     filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.7));
   }
 
+  .product-section.reverse .section-image {
+    order: 2;
+  }
+
   .specs {
     margin-top: 50px;
     display: flex;
-    gap: 45px;
+    flex-wrap: wrap;
+    gap: 30px 45px;
   }
 
   .specs div {
@@ -644,6 +693,10 @@ const year = new Date().getFullYear();
     .detail-section {
       display: flex;
       flex-direction: column;
+    }
+
+    .product-section.reverse .section-image {
+      order: 0;
     }
 
     .brand-section {

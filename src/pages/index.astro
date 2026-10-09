@@ -1,10 +1,18 @@
 ---
+/* ==========================================================================
+   Datos del sitio
+   ========================================================================== */
 const siteUrl = 'https://origen.plus/';
-const title = 'ORIGEN plus | Producto natural en Cali, Colombia';
+const title = 'ORIGEN plus | Productos naturales en Cali, Colombia';
 const description =
   'ORIGEN plus, marca de producto natural de la línea ORIGEN en Cali, Colombia. Bebida a base de agua con fruta en 330 ml y 30 ml / 1 fl oz.';
 const ogImage = `${siteUrl}images/og-origen-1200x630.jpg`;
+const ogImageAlt =
+  'ORIGEN plus, producto natural de la línea ORIGEN en Cali, Colombia';
 
+/* ==========================================================================
+   Datos estructurados (schema.org)
+   ========================================================================== */
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -41,19 +49,38 @@ const jsonLd = {
     },
   ],
 };
+
+/* ==========================================================================
+   Contenido de la página
+   ========================================================================== */
+const navLinks = [
+  { href: '#producto', label: 'Producto' },
+  { href: '#detalle', label: 'Detalles' },
+  { href: '#marca', label: 'Marca' },
+  { href: '#contacto', label: 'Contacto' },
+];
+
+const specs = [
+  { value: '330 ml', label: 'Formato hogar' },
+  { value: '30 ml', label: 'Formato individual' },
+  { value: '1 fl oz', label: 'Presentación individual' },
+];
+
+const year = new Date().getFullYear();
 ---
 
 <!doctype html>
 <html lang="es-CO">
   <head>
+    <!-- Base -->
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="theme-color" content="#0a0a0a" />
     <link rel="canonical" href={siteUrl} />
 
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={siteUrl} />
     <meta property="og:title" content={title} />
@@ -61,24 +88,25 @@ const jsonLd = {
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta
-      property="og:image:alt"
-      content="ORIGEN plus, producto natural de la línea ORIGEN en Cali, Colombia"
-    />
+    <meta property="og:image:alt" content={ogImageAlt} />
     <meta property="og:site_name" content="ORIGEN plus" />
     <meta property="og:locale" content="es_CO" />
 
+    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
+    <!-- Datos estructurados -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 
+    <!-- PWA e iconos -->
     <link rel="manifest" href="/manifest.webmanifest" />
     <link rel="icon" type="image/png" href="/icons/origen-192.png" />
     <link rel="apple-touch-icon" href="/icons/origen-192.png" />
 
+    <!-- Fuentes -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -88,6 +116,7 @@ const jsonLd = {
   </head>
 
   <body>
+    <!-- ================= NAVBAR ================= -->
     <header class="navbar">
       <button id="install-pwa" class="install-button" hidden>
         Instalar ORIGEN
@@ -96,15 +125,12 @@ const jsonLd = {
       <a href="/" class="logo">ORIGEN</a>
 
       <nav aria-label="Principal">
-        <a href="#producto">Producto</a>
-        <a href="#detalle">Detalles</a>
-        <a href="#marca">Marca</a>
-        <a href="#contacto">Contacto</a>
+        {navLinks.map(({ href, label }) => <a href={href}>{label}</a>)}
       </nav>
     </header>
 
     <main>
-      <!-- HERO -->
+      <!-- ================= HERO ================= -->
       <section class="hero">
         <div class="hero-content">
           <p class="eyebrow">Cali, Colombia</p>
@@ -120,9 +146,7 @@ const jsonLd = {
             para tener en casa y 30 ml / 1 fl oz para llevar.
           </p>
 
-          <a href="#producto" class="button">
-            Conocer ORIGEN
-          </a>
+          <a href="#producto" class="button">Conocer ORIGEN</a>
         </div>
 
         <div class="hero-product">
@@ -138,7 +162,7 @@ const jsonLd = {
         </div>
       </section>
 
-      <!-- PRODUCTO -->
+      <!-- ================= PRODUCTO ================= -->
       <section id="producto" class="product-section">
         <div class="section-image">
           <img
@@ -159,31 +183,23 @@ const jsonLd = {
           </h2>
 
           <p>
-            ORIGEN plus es una bebida a base de agua con fruta.
-            Su propuesta contempla una presentación de 330 ml para tener en
-            casa y una presentación individual de 30 ml / 1 fl oz para llevar.
+            ORIGEN plus es una bebida a base de agua con fruta. Su propuesta
+            contempla una presentación de 330 ml para tener en casa y una
+            presentación individual de 30 ml / 1 fl oz para llevar.
           </p>
 
           <div class="specs">
-            <div>
-              <strong>330 ml</strong>
-              <span>Formato hogar</span>
-            </div>
-
-            <div>
-              <strong>30 ml</strong>
-              <span>Formato individual</span>
-            </div>
-
-            <div>
-              <strong>1 fl oz</strong>
-              <span>Presentación individual</span>
-            </div>
+            {specs.map(({ value, label }) => (
+              <div>
+                <strong>{value}</strong>
+                <span>{label}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <!-- DETALLE -->
+      <!-- ================= DETALLE ================= -->
       <section id="detalle" class="detail-section">
         <div>
           <p class="eyebrow">LA PROPUESTA</p>
@@ -194,9 +210,9 @@ const jsonLd = {
           </h2>
 
           <p>
-            El formato de 330 ml está pensado para tener ORIGEN disponible
-            en casa. El formato individual de 30 ml / 1 fl oz está pensado
-            para llevar fácilmente contigo.
+            El formato de 330 ml está pensado para tener ORIGEN disponible en
+            casa. El formato individual de 30 ml / 1 fl oz está pensado para
+            llevar fácilmente contigo.
           </p>
 
           <p>
@@ -217,7 +233,7 @@ const jsonLd = {
         </div>
       </section>
 
-      <!-- MARCA -->
+      <!-- ================= MARCA ================= -->
       <section id="marca" class="brand-section">
         <p class="eyebrow">LA MARCA</p>
 
@@ -233,7 +249,7 @@ const jsonLd = {
         </p>
       </section>
 
-      <!-- CONTACTO -->
+      <!-- ================= CONTACTO ================= -->
       <section id="contacto" class="cta">
         <p class="eyebrow">ORIGEN plus</p>
 
@@ -242,61 +258,59 @@ const jsonLd = {
           <span>Dos formas de llevarla.</span>
         </h2>
 
-        <a href="mailto:hola@origen.plus" class="button">
-          Contactar
-        </a>
+        <a href="mailto:hola@origen.plus" class="button">Contactar</a>
       </section>
     </main>
 
+    <!-- ================= FOOTER ================= -->
     <footer>
-      <span>© {new Date().getFullYear()} ORIGEN · Cali, Colombia</span>
+      <span>© {year} ORIGEN · Cali, Colombia</span>
       <span>origen.plus</span>
     </footer>
 
+    <!-- ================= PWA ================= -->
     <script>
+      // Service worker
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js');
         });
       }
-    </script>
 
-    <script>
-      let deferredPrompt;
+      // Botón "Instalar ORIGEN"
+      let deferredPrompt: any = null;
+      const installButton =
+        document.querySelector<HTMLButtonElement>('#install-pwa');
 
-      const installButton = document.querySelector('#install-pwa');
+      const hideInstallButton = () => {
+        if (installButton) installButton.hidden = true;
+      };
 
       window.addEventListener('beforeinstallprompt', (event) => {
         event.preventDefault();
-
         deferredPrompt = event;
-
-        if (installButton) {
-          installButton.hidden = false;
-        }
+        if (installButton) installButton.hidden = false;
       });
 
       installButton?.addEventListener('click', async () => {
         if (!deferredPrompt) return;
 
         deferredPrompt.prompt();
-
         await deferredPrompt.userChoice;
 
         deferredPrompt = null;
-        installButton.hidden = true;
+        hideInstallButton();
       });
 
-      window.addEventListener('appinstalled', () => {
-        if (installButton) {
-          installButton.hidden = true;
-        }
-      });
+      window.addEventListener('appinstalled', hideInstallButton);
     </script>
   </body>
 </html>
 
 <style>
+  /* ==========================================================================
+     Base
+     ========================================================================== */
   :global(*) {
     box-sizing: border-box;
   }
@@ -315,62 +329,6 @@ const jsonLd = {
   :global(a) {
     color: inherit;
     text-decoration: none;
-  }
-
-  .navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 28px 6vw;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    z-index: 10;
-  }
-
-  .logo {
-    font-size: 20px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-  }
-
-  nav {
-    display: flex;
-    gap: 32px;
-    font-size: 14px;
-    color: #aaa;
-  }
-
-  nav a {
-    transition: color 0.2s ease;
-  }
-
-  nav a:hover {
-    color: white;
-  }
-
-  .hero {
-    min-height: 100vh;
-    padding: 120px 8vw 70px;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    overflow: hidden;
-  }
-
-  .hero-content {
-    position: relative;
-    z-index: 2;
-    max-width: 620px;
-  }
-
-  .eyebrow {
-    margin-bottom: 22px;
-    color: #aaa;
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.25em;
   }
 
   h1,
@@ -403,14 +361,17 @@ const jsonLd = {
     letter-spacing: -0.02em;
   }
 
-  .hero-text {
-    max-width: 450px;
-    margin: 32px 0;
+  .eyebrow {
+    margin-bottom: 22px;
     color: #aaa;
-    font-size: 17px;
-    line-height: 1.7;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
   }
 
+  /* ==========================================================================
+     Botones
+     ========================================================================== */
   .button {
     display: inline-flex;
     padding: 15px 24px;
@@ -424,6 +385,85 @@ const jsonLd = {
     background: #f5f3ed;
     color: #0a0a0a;
     border-color: #f5f3ed;
+  }
+
+  .install-button {
+    padding: 10px 16px;
+    border: 1px solid #b8a47c;
+    border-radius: 999px;
+    background: transparent;
+    color: #f5f3ed;
+    font-family: inherit;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+
+  .install-button:hover {
+    background: #b8a47c;
+    color: #0a0a0a;
+  }
+
+  /* ==========================================================================
+     Navbar
+     ========================================================================== */
+  .navbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    padding: 28px 6vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .logo {
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+  }
+
+  nav {
+    display: flex;
+    gap: 32px;
+    color: #aaa;
+    font-size: 14px;
+  }
+
+  nav a {
+    transition: color 0.2s ease;
+  }
+
+  nav a:hover {
+    color: white;
+  }
+
+  /* ==========================================================================
+     Hero
+     ========================================================================== */
+  .hero {
+    min-height: 100vh;
+    padding: 120px 8vw 70px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 620px;
+  }
+
+  .hero-text {
+    max-width: 450px;
+    margin: 32px 0;
+    color: #aaa;
+    font-size: 17px;
+    line-height: 1.7;
   }
 
   .hero-product {
@@ -454,6 +494,9 @@ const jsonLd = {
     filter: blur(100px);
   }
 
+  /* ==========================================================================
+     Producto y Detalle
+     ========================================================================== */
   .product-section,
   .detail-section {
     padding: 140px 10vw;
@@ -461,6 +504,15 @@ const jsonLd = {
     grid-template-columns: 1fr 1fr;
     gap: 10vw;
     align-items: center;
+  }
+
+  .section-content p,
+  .detail-section p {
+    max-width: 520px;
+    margin-top: 30px;
+    color: #999;
+    font-size: 17px;
+    line-height: 1.8;
   }
 
   .section-image {
@@ -472,25 +524,6 @@ const jsonLd = {
     width: min(70%, 380px);
     height: auto;
     filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.7));
-  }
-
-  .section-content p,
-  .detail-section p,
-  .brand-section p:not(.eyebrow) {
-    max-width: 520px;
-    margin-top: 30px;
-    color: #999;
-    font-size: 17px;
-    line-height: 1.8;
-  }
-
-  .brand-section {
-    padding: 120px 10vw;
-    border-top: 1px solid #1e1e1e;
-  }
-
-  .brand-section p:not(.eyebrow) {
-    max-width: 620px;
   }
 
   .specs {
@@ -517,10 +550,10 @@ const jsonLd = {
   }
 
   .cap-card {
+    min-height: 450px;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 450px;
     background: #111;
     border: 1px solid #222;
   }
@@ -530,6 +563,25 @@ const jsonLd = {
     height: auto;
   }
 
+  /* ==========================================================================
+     Marca
+     ========================================================================== */
+  .brand-section {
+    padding: 120px 10vw;
+    border-top: 1px solid #1e1e1e;
+  }
+
+  .brand-section p:not(.eyebrow) {
+    max-width: 620px;
+    margin-top: 30px;
+    color: #999;
+    font-size: 17px;
+    line-height: 1.8;
+  }
+
+  /* ==========================================================================
+     Contacto (CTA)
+     ========================================================================== */
   .cta {
     min-height: 70vh;
     padding: 120px 8vw;
@@ -545,6 +597,9 @@ const jsonLd = {
     margin-bottom: 45px;
   }
 
+  /* ==========================================================================
+     Footer
+     ========================================================================== */
   footer {
     padding: 28px 6vw;
     display: flex;
@@ -554,9 +609,17 @@ const jsonLd = {
     border-top: 1px solid #1e1e1e;
   }
 
+  /* ==========================================================================
+     Responsive (móvil)
+     ========================================================================== */
   @media (max-width: 800px) {
     nav {
       display: none;
+    }
+
+    .install-button {
+      padding: 8px 12px;
+      font-size: 11px;
     }
 
     .hero {
@@ -595,30 +658,6 @@ const jsonLd = {
     footer {
       flex-direction: column;
       gap: 10px;
-    }
-  }
-
-  .install-button {
-    border: 1px solid #b8a47c;
-    background: transparent;
-    color: #f5f3ed;
-    padding: 10px 16px;
-    border-radius: 999px;
-    font-family: inherit;
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-  }
-
-  .install-button:hover {
-    background: #b8a47c;
-    color: #0a0a0a;
-  }
-
-  @media (max-width: 800px) {
-    .install-button {
-      padding: 8px 12px;
-      font-size: 11px;
     }
   }
 </style>
